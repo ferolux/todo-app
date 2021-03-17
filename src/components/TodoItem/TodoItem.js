@@ -1,13 +1,22 @@
 import React from "react";
 
-const TodoItem = ({ label, important = false }) => {
+const TodoItem = (props) => {
 
-    const style = {
-        color: important ? "tomato" : "black"
+    const { label, statuses } = props;
+
+    let className = "todo-item__text";
+
+
+    if(statuses[1].status) {
+        className += " todo-item__text--ok";
+    }
+
+    if(statuses[3].status) {
+        className += " todo-item__text--i"
     }
 
     return (
-        <span style={style}>{label}</span>
+        <span className={className}>{label}</span>
     )
 
 }
