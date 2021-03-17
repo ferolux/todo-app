@@ -10,6 +10,7 @@ import "./App.css";
 class App extends React.Component {
 
     state = {
+        addInput: "",
         todoData: [
             {
                 id: 1,
@@ -31,7 +32,7 @@ class App extends React.Component {
             },
             {
                 id: 3,
-                label: "Покушать кашу",
+                label: "Съесть кашу",
                 statuses: {
                     "1": {statusName: "ok", status: false},
                     "2": {statusName: "del", status: false},
@@ -62,17 +63,37 @@ class App extends React.Component {
                     return item;
                 })
             }
-        })
+        });
     }
+
+    updateTodoCount = () => {
+        let count = 0;
+        this.state.todoData.forEach(el => {
+            if(!el.statuses["2"].status) {
+                count += 1;
+            }
+        })
+        return count;
+    };
+    updateDoneCount = () => {
+        let count = 0;
+        this.state.todoData.forEach(el => {
+            if(el.statuses["1"].status && !el.statuses["2"].status) {
+                count += 1;
+            }
+        })
+        return count;
+    };
 
 
     render() {
 
-        console.log(this.state.todoData);
+        const todoCount = this.updateTodoCount();
+        const doneCount = this.updateDoneCount();
 
         return (
             <div className="app">
-                <AppHeader todo={1} done={3}/>
+                <AppHeader todo={todoCount} done={doneCount}/>
                 <div className="app__top-panel">
                     <div className="top-panel">
                         <SearchPanel/>
