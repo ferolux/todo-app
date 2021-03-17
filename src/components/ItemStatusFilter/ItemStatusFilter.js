@@ -1,12 +1,15 @@
 import React from "react";
 import "./itemStatusFilter.css";
 
-const ItemStatusFilter = () => {
+const ItemStatusFilter = ({changeTodoFilter}) => {
+    const onTodoFilterClick = (filterId) => {
+        changeTodoFilter(filterId);
+    }
     return (
         <div className="item-status-filter">
-            <button className="item-status-filter__button item-status-filter__button--active">All</button>
-            <button className="item-status-filter__button ">Active</button>
-            <button className="item-status-filter__button ">Done</button>
+            <button onClick={() => onTodoFilterClick(1)} className="item-status-filter__button item-status-filter__button--active">All</button>
+            <button onClick={() => onTodoFilterClick(2)} className="item-status-filter__button ">Active</button>
+            <button onClick={() => onTodoFilterClick(3)} className="item-status-filter__button ">Done</button>
         </div>
     )
 }
