@@ -7,28 +7,84 @@ import AddTodoItem from "../AddTodoItem";
 
 import "./App.css";
 
-const App = () => {
+class App extends React.Component {
 
-    const todoData = [
-        { id: 1, label: "Build React App", important: false },
-        { id: 2, label: "Drink coffee", important: false },
-        { id: 3, label: "Build next React App", important: false },
+    state = {
+        todoData: [
+            {
+                id: 1,
+                label: "Сварить кашу",
+                statuses: {
+                    "1": {statusName: "ok", status: false},
+                    "2": {statusName: "del", status: false},
+                    "3": {statusName: "important", status: false}
+                }
+            },
+            {
+                id: 2,
+                label: "Создать React прилжение",
+                statuses: {
+                    "1": {statusName: "ok", status: false},
+                    "2": {statusName: "del", status: false},
+                    "3": {statusName: "important", status: false}
+                }
+            },
+            {
+                id: 3,
+                label: "Покушать кашу",
+                statuses: {
+                    "1": {statusName: "ok", status: false},
+                    "2": {statusName: "del", status: false},
+                    "3": {statusName: "important", status: false}
+                }
+            },
 
-    ]
+        ]
+    }
 
-    return (
-        <div className="app">
-            <AppHeader todo={1} done={3}/>
-            <div className="app__top-panel">
-                <div className="top-panel">
-                    <SearchPanel/>
-                    <ItemStatusFilter/>
+    updateStatus = (itemId, statusId) => {
+        this.setState((state) => {
+            return {
+                ...state,
+                todoData: state.todoData.map(item => {
+                    if(item.id === itemId) {
+                        return {
+                            ...item,
+                            statuses: {
+                                ...item.statuses,
+                                [statusId]: {
+                                    ...item.statuses[statusId],
+                                    status: !item.statuses[statusId].status
+                                }
+                            }
+                        }
+                    }
+                    return item;
+                })
+            }
+        })
+    }
+
+
+    render() {
+
+        console.log(this.state.todoData);
+
+        return (
+            <div className="app">
+                <AppHeader todo={1} done={3}/>
+                <div className="app__top-panel">
+                    <div className="top-panel">
+                        <SearchPanel/>
+                        <ItemStatusFilter/>
+                    </div>
                 </div>
+                <TodoList todoData={this.state.todoData} updateStatus={this.updateStatus}/>
+                <AddTodoItem/>
             </div>
-            <TodoList todoData={todoData}/>
-            <AddTodoItem/>
-        </div>
-    )
+        )
+    }
+
 }
 
 export default App;
