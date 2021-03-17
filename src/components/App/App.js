@@ -12,7 +12,7 @@ class App extends React.Component {
     state = {
         inputAddValue: "",
         inputSearchValue: "",
-        filterId: null,
+        filterId: 1,
         todoData: [
             {
                 id: 1,
@@ -101,7 +101,7 @@ class App extends React.Component {
             return {
                 ...state,
                 inputAddValue: "",
-                filterId: null,
+                filterId: 1,
                 inputSearchValue: "",
                 todoData: [
                     ...this.state.todoData,
@@ -147,9 +147,6 @@ class App extends React.Component {
 
 
     render() {
-
-        console.log(this.state)
-
         const {todoData, inputAddValue, inputSearchValue, filterId} = this.state;
         const todoCount = this.updateTodoCount();
         const doneCount = this.updateDoneCount();
@@ -162,7 +159,7 @@ class App extends React.Component {
                 <div className="app__top-panel">
                     <div className="top-panel">
                         <SearchPanel changeInput={this.changeInput}/>
-                        <ItemStatusFilter changeTodoFilter={this.changeTodoFilter}/>
+                        <ItemStatusFilter changeTodoFilter={this.changeTodoFilter} filterId={filterId}/>
                     </div>
                 </div>
                 <TodoList todoData={todosVisible} updateStatus={this.updateStatus}/>
