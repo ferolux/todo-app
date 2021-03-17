@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f3fa;
+}
+
+.app {
+    width: 400px;
+    margin: 15px auto 0;
+    background-color: #e8eefa;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.app__top-panel {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.top-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
