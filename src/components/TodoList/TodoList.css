@@ -21,11 +21,25 @@
     background-color: #d6ecfd;
 }
 
-.todo-item  span {
+.todo-item__text {
     font-weight: bold;
     color: black;
     font-size: 18px;
     margin-bottom: 15px;
+}
+
+.todo-item__text--i {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: tomato;
+}
+
+.todo-item__text--ok {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-decoration: line-through;
 }
 
 .todo-item-button {
