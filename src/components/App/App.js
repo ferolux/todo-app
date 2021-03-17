@@ -150,8 +150,7 @@ class App extends React.Component {
         const {todoData, inputAddValue, inputSearchValue, filterId} = this.state;
         const todoCount = this.updateTodoCount();
         const doneCount = this.updateDoneCount();
-
-        const todosVisible = this.todoFilter(filterId, this.todoSearch(inputSearchValue, todoData));
+        const todosVisible = this.todoFilter(filterId, this.todoSearch(inputSearchValue, todoData)).reverse();
 
         return (
             <div className="app">
