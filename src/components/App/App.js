@@ -14,33 +14,6 @@ class App extends React.Component {
         inputSearchValue: "",
         filterId: 1,
         todoData: [
-            {
-                id: 1,
-                label: "Сварить кашу",
-                statuses: {
-                    "1": {statusName: "ok", status: false},
-                    "2": {statusName: "del", status: false},
-                    "3": {statusName: "important", status: false}
-                }
-            },
-            {
-                id: 2,
-                label: "Создать React прилжение",
-                statuses: {
-                    "1": {statusName: "ok", status: false},
-                    "2": {statusName: "del", status: false},
-                    "3": {statusName: "important", status: false}
-                }
-            },
-            {
-                id: 3,
-                label: "Съесть кашу",
-                statuses: {
-                    "1": {statusName: "ok", status: false},
-                    "2": {statusName: "del", status: false},
-                    "3": {statusName: "important", status: false}
-                }
-            },
 
         ]
     }
@@ -95,8 +68,8 @@ class App extends React.Component {
     }
 
     addTodoItem = () => {
-        const todoIdItems = this.state.todoData.map(el => el.id);
-        const id = Math.max(...todoIdItems) + 1
+        const todoId = this.state.todoData.length + 1;
+
         this.setState((state) => {
             return {
                 ...state,
@@ -106,7 +79,7 @@ class App extends React.Component {
                 todoData: [
                     ...this.state.todoData,
                     {
-                        id: id,
+                        id: todoId,
                         label: this.state.inputAddValue,
                         statuses: {
                             "1": {statusName: "ok", status: false},
@@ -147,6 +120,7 @@ class App extends React.Component {
 
 
     render() {
+        console.log(this.state)
         const {todoData, inputAddValue, inputSearchValue, filterId} = this.state;
         const todoCount = this.updateTodoCount();
         const doneCount = this.updateDoneCount();
