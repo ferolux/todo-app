@@ -16,6 +16,8 @@ const AddTodoItem = (props) => {
         addTodoItem();
     }
 
+    const buttonDisabled = inputAddValue.length < 1;
+
     return (
         <div className="add-todo-item">
             <input
@@ -25,7 +27,7 @@ const AddTodoItem = (props) => {
                 value={inputAddValue}
                 name="inputAddValue"
             />
-            <button onClick={onTodoItemAdd} className="add-todo-item__button">Add</button>
+            <button onClick={onTodoItemAdd} disabled={buttonDisabled} className="add-todo-item__button">Add</button>
         </div>
     )
 }
