@@ -120,7 +120,6 @@ class App extends React.Component {
 
 
     render() {
-        console.log(this.state)
         const {todoData, inputAddValue, inputSearchValue, filterId} = this.state;
         const todoCount = this.updateTodoCount();
         const doneCount = this.updateDoneCount();
